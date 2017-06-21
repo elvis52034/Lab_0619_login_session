@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head runat="server">
@@ -29,14 +30,32 @@
                 </asp:LoginView>
             </div>
             <div class="clear hideSkiplink">
+                <% if (Session["uid"] == null || Session["uid"].ToString() == "") { %>
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                   
                     <Items>
                         <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
-                        <asp:MenuItem NavigateUrl="~/Login.aspx" Text="Login"/>
+                       
+                        <asp:MenuItem NavigateUrl="~/Login.aspx" Text="login"/>
+                    
                         <asp:MenuItem NavigateUrl="~/Secret.aspx" Text="Secret" Value="Secret">
                         </asp:MenuItem>
                     </Items>
                 </asp:Menu>
+                <% } %>
+                <% else {  %>
+                 <asp:Menu ID="Menu1" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                   
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                       
+                        <asp:MenuItem NavigateUrl="~/Lgout.aspx" Text="logout"/>
+                    
+                        <asp:MenuItem NavigateUrl="~/Secret.aspx" Text="Secret" Value="Secret">
+                        </asp:MenuItem>
+                    </Items>
+                </asp:Menu>
+                <% } %>
             </div>
         </div>
         <div class="main">
